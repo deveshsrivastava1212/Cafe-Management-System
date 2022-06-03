@@ -1,5 +1,5 @@
 require('dotenv').config();
-const e = require('express');
+const express = require('express');
 const jwt = require('jsonwebtoken')
 
 function authenticateToken(req,res,next){
