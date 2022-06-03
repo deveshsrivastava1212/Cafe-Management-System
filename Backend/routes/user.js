@@ -56,7 +56,7 @@ router.post('/login', (req, res) => {
             }
             else if (results[0].password == user.password) {
                 const response = { email: results[0].email, role: results[0].role }
-                const accessToken = jwt.sign(response, process.env.ACCESS_TOKEN, { expiresIn: '5m' })
+                const accessToken = jwt.sign(response, process.env.ACCESS_TOKEN, { expiresIn: '30m' })
                 res.status(200).json({
                     token: accessToken
                 });
