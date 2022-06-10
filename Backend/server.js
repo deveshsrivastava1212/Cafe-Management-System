@@ -12,7 +12,9 @@ const dashboardRoute = require("./routes/dashboard")
 const port = process.env.PORT;
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://localhost:4200'
+}));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use('/user', userRoute);

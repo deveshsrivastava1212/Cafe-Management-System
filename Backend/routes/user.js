@@ -39,6 +39,7 @@ router.post('/signup', (req, res) => {
 
 })
 
+
 router.post('/login', (req, res) => {
     const user = req.body;
     query = "select email,password,role,status from users where email =?"
@@ -81,6 +82,7 @@ var transporter = nodemailer.createTransport({
         pass: process.env.PASSWORD
     }
 })
+
 
 //ROUTE TO PROVIDE THE FORGOT PASSWORD SERVICE
 router.post('/forgotpassword', (req, res) => {
