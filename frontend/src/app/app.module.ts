@@ -13,11 +13,6 @@ import { SharedModule } from './shared/shared.module';
 import { FullComponent } from './layouts/full/full.component';
 import { AppHeaderComponent } from './layouts/full/header/header.component';
 import { AppSidebarComponent } from './layouts/full/sidebar/sidebar.component';
-import { HttpClientModule } from '@angular/common/http';
-import { SignupComponent } from './signup/signup.component';
-
-
-
 @NgModule({
   declarations: [	
     AppComponent,
@@ -25,8 +20,7 @@ import { SignupComponent } from './signup/signup.component';
     BestSellerComponent,
     FullComponent,
     AppHeaderComponent,
-    AppSidebarComponent,
-    SignupComponent
+    AppSidebarComponent
    ],
   imports: [
     BrowserModule,
@@ -36,9 +30,7 @@ import { SignupComponent } from './signup/signup.component';
     ReactiveFormsModule,
     MaterialModule,
     FlexLayoutModule,
-    SharedModule,
-    HttpClientModule,
-
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
