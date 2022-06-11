@@ -16,7 +16,7 @@ router.post('/signup', (req, res) => {
         if (!err) {
             if (results.length <= 0) {
                 query = "insert into users(name,contact,email,password,status,role) values(?,?,?,?,'false','user')"
-                connection.query(query, [user.name, user.contact, user.email, user.password], (err, results) => {
+                connection.query(query, [user.name, user.contactNumber, user.email, user.password], (err, results) => {
                     if (!err) {
                         return res.status(200)
                             .json({ message: "Signup Successful" })
@@ -57,7 +57,7 @@ router.post('/login', (req, res) => {
             }
             else if (results[0].password == user.password) {
                 const response = { email: results[0].email, role: results[0].role }
-                const accessToken = jwt.sign(response, process.env.ACCESS_TOKEN, { expiresIn: '30m' })
+                const accessToken = jwt.sign(response, process.env.ACCESS_TOKEN, { expiresIn: '30s' })
                 res.status(200).json({
                     token: accessToken
                 });
