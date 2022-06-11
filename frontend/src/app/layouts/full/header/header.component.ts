@@ -14,4 +14,12 @@ export class AppHeaderComponent {
 
   }
 
+  logout(){
+    const dialogConfig =new MatDialogConfig();
+    dialogConfig.data = {
+      message:'Logout'
+    };
+    
+  }
+
 }
