@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SnackbarService } from '../services/snackbar.service';
 import { UserService } from '../services/user.service';
-import { GlobalContant } from '../shared/gloabal-constant';
+import { GlobalConstants } from '../shared/gloabal-constant';
 
 @Component({
   selector: 'app-signup',
@@ -23,9 +23,9 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
-      name: [null, [Validators.required, Validators.pattern(GlobalContant.nameRegex)]],
-      email: [null, [Validators.required, Validators.pattern(GlobalContant.emailRegex)]],
-      contactNumber: [null, [Validators.required, Validators.pattern(GlobalContant.contactNumberRegex)]],
+      name: [null, [Validators.required, Validators.pattern(GlobalConstants.nameRegex)]],
+      email: [null, [Validators.required, Validators.pattern(GlobalConstants.emailRegex)]],
+      contactNumber: [null, [Validators.required, Validators.pattern(GlobalConstants.contactNumberRegex)]],
       password: [null, [Validators.required]],
     })
   }
@@ -47,9 +47,9 @@ export class SignupComponent implements OnInit {
         this.responseMessage = error.error?.message;
       }
       else {
-        this.responseMessage = GlobalContant.genericError;
+        this.responseMessage = GlobalConstants.genericError;
       }
-      this.snackbarService.openSnackBar(this.responseMessage,GlobalContant.error);
+      this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
 
     })
   }

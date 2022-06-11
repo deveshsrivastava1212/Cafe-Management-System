@@ -1,4 +1,4 @@
-export class GlobalContant {
+export class GlobalConstants {
     //Messge
     public static genericError: string = "Something went wrong. Please try again later";
 

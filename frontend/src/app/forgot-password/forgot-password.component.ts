@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SnackbarService } from '../services/snackbar.service';
 import { UserService } from '../services/user.service';
-import { GlobalContant } from '../shared/gloabal-constant';
+import { GlobalConstants } from '../shared/gloabal-constant';
 
 @Component({
   selector: 'app-forgot-password',
@@ -21,7 +21,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.forgotPasswordForm = this.formBuilder.group({
-      email: [null, [Validators.required, Validators.pattern(GlobalContant.emailRegex)]]
+      email: [null, [Validators.required, Validators.pattern(GlobalConstants.emailRegex)]]
 
     });
 
@@ -39,7 +39,7 @@ export class ForgotPasswordComponent implements OnInit {
       if (error.error.message) {
         this.responseMessage = error.error?.message;
       }
-      this.snackbarService.openSnackBar(this.responseMessage,GlobalContant.error);
+      this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
 
     })
   }
