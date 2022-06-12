@@ -74,4 +74,11 @@ export class ManageCategoryComponent implements OnInit {
             }
           )
         }
+        handleDeleteAction(value:any){
+          const dialogConfg =new MatDialogConfig();
+          dialogConfg.data ={
+            action: 'Delete',
+            data:value
+          }
+        }
 }
