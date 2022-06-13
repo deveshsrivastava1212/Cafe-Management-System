@@ -61,14 +61,14 @@ export class CategoryComponent implements OnInit {
       else {
         this.responseMessage = GlobalConstants.genericError;
       }
-      this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
+      this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
     })
   }
 
   edit() {
     var formData = this.categoryForm.value;
     var data = {
-      id:this.dialogData.data.id,
+      id: this.dialogData.data.id,
       name: formData.name
     }
     this.categoryService.update(data).subscribe((response: any) => {
@@ -84,8 +84,8 @@ export class CategoryComponent implements OnInit {
       else {
         this.responseMessage = GlobalConstants.genericError;
       }
-      this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
+      this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
     })
-   }
+  }
 
 }

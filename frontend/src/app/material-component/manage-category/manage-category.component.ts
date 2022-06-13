@@ -6,6 +6,7 @@ import { CategoryService } from 'src/app/services/category.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { GlobalConstants } from 'src/app/shared/gloabal-constant';
 import { CategoryComponent } from '../dialog/category/category.component';
+import { ConfirmationComponent } from '../dialog/confirmation/confirmation.component';
 
 @Component({
   selector: 'app-manage-category',
@@ -75,10 +76,31 @@ export class ManageCategoryComponent implements OnInit {
           )
         }
         handleDeleteAction(value:any){
-          const dialogConfg =new MatDialogConfig();
-          dialogConfg.data ={
-            action: 'Delete',
-            data:value
-          }
+          const dialogConfig = new MatDialogConfig();
+          dialogConfig.data = {
+            message: 'delete'+value.name+'category'
+          };
+          const dialogRef = this.dialog.open(ConfirmationComponent,dialogConfig);
+          const sub = dialogRef.componentInstance.onEmitstatuschange.subscribe((response)=>{
+            this.deleleCategory(value.id);
+            dialogRef.close();
+          })
+          
         }
-}
+        deleleCategory(id:any){this.categoryService.delete(id).subscribe((response:any)=>{
+          this.tableData();
+          this.responseMessage = response?.message;
+          this.snackbarService.openSnackBar(this.responseMessage,"success");
+        },(error:any)=>{
+          console.log(error);
+          if(error.error?.message){
+            this.responseMessage =error.error?.message;
+          }
+          else{
+            this.responseMessage = GlobalConstants.genericError;
+          }
+          this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
+
+
+        })
+}}
