@@ -3,11 +3,12 @@
     <button mat-flat-button color="primary" class="float-right" [disabled]="validateSubmit()"
         (click)="submitAction()">Submit and Get bill</button> 
 </mat-card>
+<hr>
 <mat-card>
     <b><span>Customer Details:</span></b>
     <form [formGroup]="manageOrderForm">
         <div fxFlex fxLayout="column">
-            <div fxLayout="row wrap">
+            <div fxLayout="row wrap"> 
                 <mat-form-field appearance="fill" fxFlex>
                     <mat-label>Name</mat-label>
                     <input matInput formControlName="name" required>
@@ -101,6 +102,10 @@
         </div>
     </div>
 </form>
+<div>
+    <button mat-flat-button color="primary" [disabled]="validateProductAdd()" (click)="add()">Add</button>
+    <button mat-flat-button color="primary" class="float-right">Total Amount: {{totalAmount}}</button>
+</div>
 </mat-card>
 <hr>
 <div class="responsive_table">
@@ -132,6 +137,13 @@
 
         <ng-container matColumnDef="edit">
             <th mat-header-cell *matHeaderCellDef>Delete</th>
+            <td mat-cell *matCellDef="let element; let i =index" class="action-link">
+                <button mat-icon-button color="primary" matTooltip="Delete" (click)="handleDeleteAction(i, element)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
         </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
+        <tr mat-row *matRowDef="let row,columns:displayedColumns;"></tr>
     </table>
 </div>
