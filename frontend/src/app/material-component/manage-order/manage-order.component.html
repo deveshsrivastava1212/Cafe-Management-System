@@ -56,12 +56,12 @@
 <mat-card>
 <b><span>Select Product</span></b>
 <form [formGroup]="manageOrderForm">
-    <div fxFlex fxLayout="column">
+     <div fxFlex fxLayout="column">
         <div fxLayout="row wrap">
             <mat-form-field appearance="fill" fxFlex>
                 <mat-label>Category</mat-label>
                 <mat-select formControlName="category" (selectionChange)="getProductsByCategory($event.value)">
-                    <mat-option *ngFor="let category of categorys" [value]="category">{{category.name}} </mat-option>
+                        <mat-option *ngFor="let category of categorys" [value]="category">{{category.name}} </mat-option>
                 </mat-select>
             </mat-form-field>  
             
@@ -105,7 +105,7 @@
 <div>
     <button mat-flat-button color="primary" [disabled]="validateProductAdd()" (click)="add()">Add</button>
     <button mat-flat-button color="primary" class="float-right">Total Amount: {{totalAmount}}</button>
-</div>
+</div>  
 </mat-card>
 <hr>
 <div class="responsive_table">
