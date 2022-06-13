@@ -82,24 +82,24 @@ export class ManageCategoryComponent implements OnInit {
           };
           const dialogRef = this.dialog.open(ConfirmationComponent,dialogConfig);
           const sub = dialogRef.componentInstance.onEmitstatuschange.subscribe((response)=>{
-            this.deleleCategory(value.id);
+            this.deleteCategory(value.id);
             dialogRef.close();
           })
-          
         }
-        deleleCategory(id:any){this.categoryService.delete(id).subscribe((response:any)=>{
-          this.tableData();
-          this.responseMessage = response?.message;
-          this.snackbarService.openSnackBar(this.responseMessage,"success");
-        },(error:any)=>{
-          console.log(error);
-          if(error.error?.message){
-            this.responseMessage =error.error?.message;
-          }
-          else{
-            this.responseMessage = GlobalConstants.genericError;
-          }
-          this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
+        deleteCategory(id:any){
+          this.categoryService.delete(id).subscribe((response:any)=>{
+            this.tableData();
+            this.responseMessage = response?.message;
+            this.snackbarService.openSnackBar(this.responseMessage,"success");
+          },(error:any)=>{
+            console.log(error);
+            if(error.error?.message){
+              this.responseMessage =error.error?.message;
+            }
+            else{
+              this.responseMessage = GlobalConstants.genericError;
+            }
+            this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
 
 
         })

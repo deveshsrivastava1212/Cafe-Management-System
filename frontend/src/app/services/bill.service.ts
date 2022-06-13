@@ -17,7 +17,7 @@ export class BillService {
         headers:new HttpHeaders().set('Content-type',"application/json")
       })
   }
-  getPDG(data:any):Observable<Blob>{
+  getPDF(data:any):Observable<Blob>{
     return this.httpClient.post(this.url+"/bill/getPdf",data,{responseType:'blob'});
 
   }

@@ -27,7 +27,7 @@ export class CategoryService {
     }
     delete(id: any) {
       return this.httpClient.delete(this.url +
-        "/product/delete/"+id, {
+        "/category/delete/" + id, {
         headers: new HttpHeaders().set('Content-Type', "application/json")
       })
     }
