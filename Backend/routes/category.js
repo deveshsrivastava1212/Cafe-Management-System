@@ -1,3 +1,4 @@
+
 const express = require('express');
 const connection = require('../db/connection');
 const router = express.Router();
@@ -43,4 +44,20 @@ router.patch('/update',auth.authenticateToken,checkRole.checkRole,(req,res,next)
     })
 })
 
+router.delete('/delete',auth.authenticateToken,checkRole.checkRole,(req,res,next)=>{
+    let id = req.body.id;
+    query = "delete from category where id = ?";
+    connection.query(query,[id],(err,results)=>{
+        if(!err){
+            if(results.affectedRows ==0){
+                console.log(err)
+                return res.status(404).json({Message:"Category ID does not exist"});
+            }
+            return res.status(200).json({Message:"Deleted Successfully"});
+        }
+        else{
+            return res.status(500).json(err);
+        }
+    })
+})
 module.exports = router;
