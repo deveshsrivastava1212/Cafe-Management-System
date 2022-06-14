@@ -75,14 +75,14 @@ export class ManageCategoryComponent implements OnInit {
             }
           )
         }
-        handleDeleteAction(value:any){
+        handleDeleteAction(values:any){
           const dialogConfig = new MatDialogConfig();
           dialogConfig.data = {
-            message: 'delete'+value.name+'category'
+            message: 'delete'+values.name+'category'
           };
           const dialogRef = this.dialog.open(ConfirmationComponent,dialogConfig);
           const sub = dialogRef.componentInstance.onEmitstatuschange.subscribe((response)=>{
-            this.deleteCategory(value.id);
+            this.deleteCategory(values.id);
             dialogRef.close();
           })
         }
@@ -90,7 +90,7 @@ export class ManageCategoryComponent implements OnInit {
           this.categoryService.delete(id).subscribe((response:any)=>{
             this.tableData();
             this.responseMessage = response?.message;
-            this.snackbarService.openSnackBar(this.responseMessage,"success");
+            this.snackbarService.openSnackBar(this.responseMessage,"Success");
           },(error:any)=>{
             console.log(error);
             if(error.error?.message){
@@ -100,7 +100,6 @@ export class ManageCategoryComponent implements OnInit {
               this.responseMessage = GlobalConstants.genericError;
             }
             this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
-
-
         })
-}}
+}
+}
