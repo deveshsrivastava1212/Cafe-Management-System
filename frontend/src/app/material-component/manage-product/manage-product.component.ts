@@ -15,7 +15,7 @@ import { ProductComponent } from '../dialog/product/product.component';
 })
 export class ManageProductComponent implements OnInit {
   displayedColumns:string[] = ['name','categoryName','description','price','edit'];
-  dataSource:any
+  dataSource:any;
   responseMessage:any;
 
   constructor(private productService:ProductService,
@@ -77,14 +77,14 @@ export class ManageProductComponent implements OnInit {
         this.tableData();
       }
     )}
-  handleDeleteAction(value:any){
+  handleDeleteAction(values:any){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      message: 'delete'+value.name+'product'
+      message: 'delete'+values.name+'product'
     };
     const dialogRef = this.dialog.open(ConfirmationComponent,dialogConfig);
     const sub = dialogRef.componentInstance.onEmitstatuschange.subscribe((response)=>{
-      this.deleteProduct(value.id);
+      this.deleteProduct(values.id);
       dialogRef.close();
     })
   }
