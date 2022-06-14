@@ -14,15 +14,15 @@ router.post('/generateReport',auth.authenticateToken,(req,res)=>{
     var productDetailsReport = JSON.parse(orderDetails.productDetails);
 
     query = "insert into bill (name,uuid,email,contactNo,paymentMethod,total,productDetails,createdBy) values(?,?,?,?,?,?,?,?)";
-    connection.query(query,[orderDetails.name,generateUuid,orderDetails.email,orderDetails.contactNo,orderDetails.paymentMethod,orderDetails.totalAmount,orderDetails.productDetails,res.locals.email],(err,results)=>{
+    connection.query(query,[orderDetails.name,generateUuid,orderDetails.email,orderDetails.contactNumber,orderDetails.paymentMethod,orderDetails.total,orderDetails.productDetails,res.locals.email],(err,results)=>{
         if(!err){
             ejs.renderFile(path.join(__dirname,'',"report.ejs"),{
                 productDetails:productDetailsReport,
                 name:orderDetails.name,
                 email:orderDetails.email,
-                contactNumber: orderDetails.contactNo,
+                contactNumber: orderDetails.contactNumber,
                 paymentMethod: orderDetails.paymentMethod,
-                totalAmount:orderDetails.totalAmount
+                totalAmount:orderDetails.total
             },(err,results)=>{
                 if(err){ 
                     console.log(err); 
@@ -64,9 +64,9 @@ router.post('/getpdf',auth.authenticateToken,(req,res)=>{
             productDetails:productDetailsReport,
             name:orderDetails.name,
             email:orderDetails.email,
-            contactNumber: orderDetails.contactNo,
+            contactNumber: orderDetails.contactNumber,
             paymentMethod:  orderDetails.paymentMethod,
-            totalAmount:orderDetails.totalAmount
+            totalAmount:orderDetails.total
         },(err,results)=>{
             if(err){ 
                 console.log(err); 
