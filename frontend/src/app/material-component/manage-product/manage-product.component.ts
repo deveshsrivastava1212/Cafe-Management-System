@@ -93,12 +93,12 @@ export class ManageProductComponent implements OnInit {
       this.tableData();
       this.responseMessage = response?.message;
       this.snackbarService.openSnackBar(this.responseMessage,"success");
-    },(error:any)=>{
+    },(error:any)=>{ 
       console.log(error);
       if(error.error?.message){
         this.responseMessage =error.error?.message;
       }
-      else{
+      else{  
         this.responseMessage = GlobalConstants.genericError;
       }
       this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);

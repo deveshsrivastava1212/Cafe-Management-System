@@ -35,7 +35,7 @@ export class ProductComponent implements OnInit {
       price: [null, Validators.required],
       description: [null, Validators.required]
     })
-
+ 
     if (this.dialogData.action === 'Edit') {
       this.dialogAction = "Edit";
       this.action = "Update";

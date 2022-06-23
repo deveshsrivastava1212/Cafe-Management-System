@@ -39,16 +39,16 @@ export class ViewBillComponent implements OnInit {
       }
       this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
     })
-  }
+  } 
   applyFilter(event:Event){
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter =filterValue.trim().toLowerCase();
 
   }
-  handleViewAction(value:any){
+  handleViewAction(values:any){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data ={
-      data:value 
+      data:values 
     };
     dialogConfig.width = "100%";
     const dialogRef = this.dialog.open(ViewBillProductsComponent,dialogConfig);

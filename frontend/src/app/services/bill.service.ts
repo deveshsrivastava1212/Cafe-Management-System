@@ -22,7 +22,7 @@ export class BillService {
   }
 
   getBills(){
-    return this.httpClient.get(this.url+"/bill/getBills");
+    return this.httpClient.get(this.url+"/bill/getBills/");
       }
       delete(id:any){
         return this.httpClient.delete(this.url+

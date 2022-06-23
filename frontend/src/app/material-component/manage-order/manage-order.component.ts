@@ -40,7 +40,7 @@ export class ManageOrderComponent implements OnInit {
       quantity: [null, [Validators.required]],
       price: [null, [Validators.required]],
       total: [0, [Validators.required]],
-    })
+    }) 
   }
   getCategorys() {
     this.categoryService.getCategorys().subscribe((response: any) => {
@@ -108,10 +108,10 @@ export class ManageOrderComponent implements OnInit {
       return false;
   }
   validateSubmit() {
-    if (this.totalAmount === 0 || this.manageOrderForm.controls['total'].value === null ||
+    if (this.totalAmount === 0 || this.manageOrderForm.controls['name'].value === null ||
       this.manageOrderForm.controls['email'].value === null || this.manageOrderForm.controls['contactNumber'].
         value === null || this.manageOrderForm.controls['paymentMethod'].value === null ||
-      !(this.manageOrderForm.controls['contactNumber'].valid) || !(this.manageOrderForm.controls['email'].valid))
+      !(this.manageOrderForm.controls['contactNumber'].valid) || !(this.manageOrderForm.controls['email'].valid)) 
 
       return true;
   
@@ -132,10 +132,10 @@ export class ManageOrderComponent implements OnInit {
     }
     else {
       this.snackbarService.openSnackBar(GlobalConstants.productExistError, GlobalConstants.error);
-    }
+    }   
   }
   handleDeleteAction(value: any, element: any) {
-    this.totalAmount = this.manageOrderForm.value;
+    this.totalAmount = this.totalAmount -element.total;
     this.dataSource.splice(value, 1);
     this.dataSource = [...this.dataSource];
   }
@@ -151,7 +151,7 @@ export class ManageOrderComponent implements OnInit {
       productDetails: JSON.stringify(this.dataSource)
     }
     this.billService.generateReport(data).subscribe((response: any) => {
-      this.downloadFile(response?.uuid);
+      this.downloadFile(response?.uuid); 
       this.manageOrderForm.reset();
       this.dataSource = [];
       this.totalAmount = 0;
@@ -171,8 +171,6 @@ export class ManageOrderComponent implements OnInit {
     }
     this.billService.getPDF(data).subscribe((response:any)=>{
       saveAs(response,filename+'.pdf');
-
     })
   }
-
 }
