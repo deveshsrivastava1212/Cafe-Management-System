@@ -4,7 +4,7 @@ const router = express.Router();
 let ejs = require('ejs');
 let pdf = require('html-pdf');
 let path = require('path');
-let fs = require('fs')
+let fs = require('fs');
 var uuid = require('uuid');
 var auth = require('../services/authentication');
 
@@ -13,20 +13,20 @@ router.post('/generateReport',auth.authenticateToken,(req,res)=>{
     const orderDetails = req.body;
     var productDetailsReport = JSON.parse(orderDetails.productDetails);
 
-    query = "insert into bill (name,uuid,email,contactNo,paymentMethod,total,productDetails,createdBy) values(?,?,?,?,?,?,?,?)";
-    connection.query(query,[orderDetails.name,generateUuid,orderDetails.email,orderDetails.contactNumber,orderDetails.paymentMethod,orderDetails.total,orderDetails.productDetails,res.locals.email],(err,results)=>{
+    var query = "insert into bill (name,uuid,email,contactNo,paymentMethod,total,productDetails,createdBy) values(?,?,?,?,?,?,?,?)";
+    connection.query(query,[orderDetails.name,generateUuid,orderDetails.email,orderDetails.contactNumber,orderDetails.paymentMethod,orderDetails.totalAmount,orderDetails.productDetails,res.locals.email],(err,results)=>{
         if(!err){
             ejs.renderFile(path.join(__dirname,'',"report.ejs"),{
                 productDetails:productDetailsReport,
                 name:orderDetails.name,
                 email:orderDetails.email,
-                contactNumber: orderDetails.contactNumber,
+                contactNumber: orderDetails.contactNumber, 
                 paymentMethod: orderDetails.paymentMethod,
-                totalAmount:orderDetails.total
+                totalAmount:orderDetails.totalAmount
             },(err,results)=>{
                 if(err){ 
                     console.log(err); 
-                   return res.status(500).json(err);  
+                    return res.status(500).json(err);  
                 }
                 else{
                     pdf.create(results).toFile('./generated_pdf/ '+generateUuid+".pdf",function(err,data){
@@ -81,16 +81,16 @@ router.post('/getpdf',auth.authenticateToken,(req,res)=>{
                     else{
                         
                         res.contentType("application/pdf");
-                        // fs.createReadStream(pdfPath).pipe(res);
-                        var readStream = fs.createReadStream(pdfPath);
-                        readStream.on('open', function () {
-                        readStream.pipe(res);
-                        });
+                        fs.createReadStream(pdfPath).pipe(res);
+                        // var readStream = fs.createReadStream(pdfPath);
+                        // readStream.on('open', function () {
+                        // readStream.pipe(res);
+                        // });
                     }
                 })
             }
         })
-    }
+    } 
 })
 
 
