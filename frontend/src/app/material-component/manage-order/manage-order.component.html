@@ -30,7 +30,7 @@
                 <mat-form-field appearance="fill" fxFlex>
                     <mat-label>Contact Number</mat-label>
                     <input matInput formControlName="contactNumber" required>
-                    <mat-error
+                    <mat-error 
                         *ngIf="manageOrderForm.controls.contactNumber.touched && manageOrderForm.controls.contactNumber.invalid">
                         <span *ngIf="manageOrderForm.controls.contactNumber.errors.required">This field is
                             mandatory.</span>
@@ -81,7 +81,7 @@
 
                 <mat-form-field appearance="fill" fxFlex>
                     <mat-label>Price</mat-label>
-                    <input matInput formControlName="price" required readonly>
+                    <input matInput formControlName="price" required >
                     <mat-error *ngIf="manageOrderForm.controls.price.touched && manageOrderForm.controls.price.invalid">
                         <span *ngIf="manageOrderForm.controls.price.errors.required">This field is mandatory.</span>
                         <span *ngIf="manageOrderForm.controls.price.errors.pattern">This field is invalid.</span>

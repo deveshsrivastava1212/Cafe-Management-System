@@ -18,7 +18,7 @@ export class ManageOrderComponent implements OnInit {
   manageOrderForm: any = FormGroup;
   categorys: any = [];
   products: any = [];
-  price: any;
+  price: any; 
   totalAmount: number = 0;
   responseMessage: any;
 
@@ -61,7 +61,7 @@ export class ManageOrderComponent implements OnInit {
       this.manageOrderForm.controls['price'].setValue('');
       this.manageOrderForm.controls['quantity'].setValue('');
       this.manageOrderForm.controls['total'].setValue(0);
-    }, (error: any) => {
+    }, (error: any) => {    
       if (error.error?.message) {
         this.responseMessage = error.error?.message;
       }
@@ -132,7 +132,7 @@ export class ManageOrderComponent implements OnInit {
     }
     else {
       this.snackbarService.openSnackBar(GlobalConstants.productExistError, GlobalConstants.error);
-    }   
+    }    
   }
   handleDeleteAction(value: any, element: any) {
     this.totalAmount = this.totalAmount -element.total;
@@ -165,12 +165,12 @@ export class ManageOrderComponent implements OnInit {
       this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
     })
   }
-  downloadFile(filename:any) {
+  downloadFile(fileName:any) {
     var data = {
-      uuid:filename
+      uuid:fileName
     }
     this.billService.getPDF(data).subscribe((response:any)=>{
-      saveAs(response,filename+'.pdf');
+      saveAs(response,fileName+'.pdf');
     })
   }
 }

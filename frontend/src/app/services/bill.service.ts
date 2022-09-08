@@ -18,7 +18,7 @@ export class BillService {
       })
   }
   getPDF(data:any):Observable<Blob>{
-    return this.httpClient.post(this.url+"/bill/getPdf",data,{responseType:'blob'});
+    return this.httpClient.post(this.url+"/bill/getpdf",data,{responseType:'blob'});
   }
 
   getBills(){

@@ -61,7 +61,7 @@ export class ViewBillComponent implements OnInit {
       name:values.name,
       email:values.email,
       uuid:values.uuid,
-      contactNumber:values.contactNo,
+      contactNumber:values.contactNumber,
       paymentMethod:values.paymentMethod,
       totalAmount:values.total,
       productDetails:values.productDetails
@@ -78,10 +78,10 @@ export class ViewBillComponent implements OnInit {
   handleDeleteAction (values:any){
     const dialogConfg =new MatDialogConfig();
     dialogConfg.data = {
-      message: 'delete'+values.name+' bill'
+      message: 'delete '+values.name+' bill'
     };
     const dialogRef = this.dialog.open(ConfirmationComponent,dialogConfg);
-    const sub = dialogRef.componentInstance.onEmitstatuschange.subscribe((response)=>{
+    const sub = dialogRef.componentInstance.onEmitstatuschange.subscribe((response)=>{  
       this.deleteProduct(values.id);
       dialogRef.close();
     })
