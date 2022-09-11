@@ -74,7 +74,8 @@ export class ManageOrderComponent implements OnInit {
   getProductDetails(value: any) {
     this.productService.getById(value.id).subscribe((response: any) => {
       this.price = response.price;
-      this.manageOrderForm.controls['price'].setValue(response.price);
+      // console.log(response.price)
+      this.manageOrderForm.controls['price'].setValue(this.price);
       this.manageOrderForm.controls['quantity'].setValue('1');
       this.manageOrderForm.controls['total'].setValue(this.price*1);
       }, (error: any) => {
