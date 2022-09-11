@@ -56,7 +56,7 @@ router.post('/getpdf',auth.authenticateToken,(req,res)=>{
     console.log(pdfPath)
     if(fs.existsSync(pdfPath)){
         res.contentType("application/pdf");
-        fs.createReadStream(pdfPath).pipe(res);
+        // fs.createReadStream(pdfPath).pipe(res);
     }
     else{
         var productDetailsReport = JSON.parse(orderDetails.productDetails);
@@ -78,15 +78,15 @@ router.post('/getpdf',auth.authenticateToken,(req,res)=>{
                          console.log(err);
                         return res.status(500).json(err);
                     }
-                    else{
+                    // else{
                         
-                        res.contentType("application/pdf");
-                        fs.createReadStream(pdfPath).pipe(res);
-                        // var readStream = fs.createReadStream(pdfPath);
-                        // readStream.on('open', function () {
-                        // readStream.pipe(res);
-                        // });
-                    }
+                    //     res.contentType("application/pdf");
+                    //     fs.createReadStream(pdfPath).pipe(res);
+                    //     var readStream = fs.createReadStream(pdfPath);
+                    //     readStream.on('open', function () {
+                    //     readStream.pipe(res);
+                    //     });
+                    // }
                 })
             }
         })
