@@ -30,7 +30,7 @@
                 <mat-form-field appearance="fill" fxFlex>
                     <mat-label>Contact Number</mat-label>
                     <input matInput formControlName="contactNumber" required>
-                    <mat-error 
+                    <mat-error
                         *ngIf="manageOrderForm.controls.contactNumber.touched && manageOrderForm.controls.contactNumber.invalid">
                         <span *ngIf="manageOrderForm.controls.contactNumber.errors.required">This field is
                             mandatory.</span>
@@ -45,6 +45,7 @@
                         <mat-option value="Cash">Cash</mat-option>
                         <mat-option value="Credit Card">Credit Card</mat-option>
                         <mat-option value="Debit Card">Debit Card</mat-option>
+                        <mat-option value="UPI">UPI</mat-option>
                     </mat-select>
                     <mat-error
                         *ngIf="manageOrderForm.controls.paymentMethod.touched && manageOrderForm.controls.paymentMethod.invalid">
@@ -112,15 +113,15 @@
     <div>
         <button mat-flat-button color="primary" [disabled]="validateProductAdd()" (click)="add()">Add</button>
         <button mat-flat-button color="primary" class="float-right">Total Amount: {{totalAmount}}</button>
-    </div> 
+    </div>
 </mat-card>
- <hr>
+<hr>
 <div class="responsive_table">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>Name</th>
             <td mat-cell *matCellDef="let element">{{element.name}}</td>
-        </ng-container> 
+        </ng-container>
 
         <ng-container matColumnDef="category">
             <th mat-header-cell *matHeaderCellDef>Category</th>
@@ -153,4 +154,4 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
         <tr mat-row *matRowDef="let row,columns:displayedColumns;"></tr>
     </table>
-</div> 
+</div>
